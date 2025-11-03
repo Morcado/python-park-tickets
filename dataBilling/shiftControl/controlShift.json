@@ -1,0 +1,97 @@
+{
+    "listShifts": [
+        {
+            "Id_Shift": 1,
+            "Id_Device": 104,
+            "InitialDate": "2024-05-19 20:03:00",
+            "FinalDate": "",
+            "Status": 1,
+            "InitInvoice": 1,
+            "FinishInvoice": 0,
+            "Id_PeopleOpening": 1,
+            "InitialCash": 0,
+            "InternalControl": 0,
+            "Diference": 0,
+            "Id_PeopleClosed": 0,
+            "FinalCash": 0,
+            "MethodsPay": {},
+            "Zones": {},
+            "Agreements": {},
+            "TotalInvoices": 0,
+            "TotalTaxes": 0,
+            "TotalwhitTaxes": 0,
+            "TotalwhitOutTaxes": 0,
+            "FailReturn": 0,
+            "Emptied": 0,
+            "Recharge": 0,
+            "StackControl": 0,
+            "LastInsert": "2024-05-19 20:03:00",
+            "TotalItems": {}
+        },
+        {
+            "Id_Shift": 920,
+            "Id_Device": 104,
+            "InitialDate": "2025-10-27 08:20:56",
+            "FinalDate": "2025-10-27 15:05:03",
+            "Status": 1,
+            "InitInvoice": 63907,
+            "FinishInvoice": 64019,
+            "Id_PeopleOpening": 6712,
+            "InitialCash": 1000,
+            "InternalControl": 5585,
+            "Diference": 0,
+            "Id_PeopleClosed": 6712,
+            "FinalCash": 1000,
+            "MethodsPay": {
+                "Efectivo": 4585
+            },
+            "Zones": {},
+            "Agreements": {},
+            "TotalInvoices": 113,
+            "TotalTaxes": 632.6199999999999,
+            "TotalwhitTaxes": 4585,
+            "TotalwhitOutTaxes": 3952.380000000001,
+            "FailReturn": 0,
+            "Emptied": 0,
+            "Recharge": 0,
+            "StackControl": 0,
+            "LastInsert": "2025-10-27 15:04:12",
+            "TotalItems": {
+                "Estacionamiento": 4585
+            }
+        },
+        {
+            "Id_Shift": 921,
+            "Id_Device": 104,
+            "InitialDate": "2025-10-27 15:07:12",
+            "FinalDate": "",
+            "Status": 0,
+            "InitInvoice": 64020,
+            "FinishInvoice": 0,
+            "Id_PeopleOpening": 6713,
+            "InitialCash": 1000,
+            "InternalControl": 1200,
+            "Diference": 0,
+            "Id_PeopleClosed": 0,
+            "FinalCash": 0,
+            "MethodsPay": {
+                "Efectivo": 200
+            },
+            "Zones": {},
+            "Agreements": {},
+            "TotalInvoices": 4,
+            "TotalTaxes": 27.59,
+            "TotalwhitTaxes": 200,
+            "TotalwhitOutTaxes": 172.41,
+            "FailReturn": 0,
+            "Emptied": 0,
+            "Recharge": 0,
+            "StackControl": 0,
+            "LastInsert": "2025-10-27 15:39:01",
+            "TotalItems": {
+                "Estacionamiento": 200
+            }
+        }
+    ],
+    "nextShift": 922
+}

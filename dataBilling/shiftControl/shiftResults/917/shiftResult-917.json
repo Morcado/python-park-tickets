@@ -1,0 +1,32 @@
+{
+    "Id_Shift": 917,
+    "Id_Device": 104,
+    "InitialDate": "2025-10-24 15:06:56",
+    "FinalDate": "2025-10-25 00:02:50",
+    "Status": 1,
+    "InitInvoice": 63580,
+    "FinishInvoice": 63684,
+    "Id_PeopleOpening": 6713,
+    "InitialCash": 1000,
+    "InternalControl": 7830,
+    "Diference": 0,
+    "Id_PeopleClosed": 6713,
+    "FinalCash": 1000,
+    "MethodsPay": {
+        "Efectivo": 6830
+    },
+    "Zones": {},
+    "Agreements": {},
+    "TotalInvoices": 105,
+    "TotalTaxes": 942.0199999999994,
+    "TotalwhitTaxes": 6830,
+    "TotalwhitOutTaxes": 5887.98,
+    "FailReturn": 0,
+    "Emptied": 0,
+    "Recharge": 0,
+    "StackControl": 0,
+    "LastInsert": "2025-10-24 23:50:03",
+    "TotalItems": {
+        "Estacionamiento": 6830
+    }
+}

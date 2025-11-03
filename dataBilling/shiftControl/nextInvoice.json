@@ -1,0 +1,10 @@
+{
+    "prefijo": "Ferchaz",
+    "numResolution": "123456789",
+    "startNumber": 1,
+    "endNumber": 1000000,
+    "orderToUse": 1,
+    "startDate": "2024-04-18",
+    "endDate": "2030-04-18",
+    "actualIndexResolution": 64024
+}

@@ -1,0 +1,65 @@
+{
+    "JsonType": 2,
+    "DateNow": 1761437539,
+    "IdInvoice": 63789,
+    "IdDevice": 104,
+    "IdShift": 919,
+    "Id_Transaction": "104-1761437539",
+    "InvoiceDate": "2025-10-25 18:12:19",
+    "numResolution": "123456789",
+    "Prefix": "Ferchaz",
+    "TotalWithoutTaxes": 43.1,
+    "TotalTaxes": 6.9,
+    "Subtotal": 50.0,
+    "TotalAdjustments": 0,
+    "Total": 50,
+    "isVoided": false,
+    "IsElectronic": false,
+    "Tax": [
+        {
+            "Id_Tax": 1,
+            "TaxValue": 16,
+            "TaxName": "IVA"
+        }
+    ],
+    "items": [
+        {
+            "Id_Product": 8,
+            "description": "Estacionamiento",
+            "TotalWithoutTaxes": 43.1,
+            "tax": 6.9,
+            "Subtotal": 50.0,
+            "TotalAdjustment": 0,
+            "Total": 50,
+            "AgreementsApplied": [],
+            "NoteItems": {
+                "Detail_liquidation": {
+                    "total": 50,
+                    "mins": 86,
+                    "liquidacion": 50,
+                    "zona": 1,
+                    "tv": 1,
+                    "calculo_dias": {
+                        "2025-10-25": {
+                            "formula": "Carros",
+                            "mins": 86,
+                            "valor": 50
+                        }
+                    },
+                    "convenios": []
+                }
+            }
+        }
+    ],
+    "PaymentMethod": 0,
+    "PaymentDetails": {
+        "valuePaid": 50,
+        "change": 0
+    },
+    "Receipt": "Estacionamiento Ocampo\nMelchor Ocampo #175\n4441631191\n\nTransaccion: 104-1761437539\n\n--------------------------------------------\nSistema POS No:      Ferchaz-63789\nFecha de expedicion: 2025-10-25 18:12:19\n--------------------------------------------\nPlaca:             \nId Device:         104\nIngreso:           2025-10-25 16:46:15\nSalida:            2025-10-25 18:11:59\nMinutos:           85.73\n--------------------------------------------\nDetalle          Subtotal   Impuesto   Total\n--------------------------------------------\nEstacionamiento   43.10   6.90   50.00   \n\n        TOTAL A PAGAR:   $ 50.00\n--------------------------------------------\nPago Efectivo\nEfectivo:          $ 50.00\nCambio:            $  0.00\n--------------------------------------------\n\nGRACIAS POR VISITARNOS\n\n--------------------------------------------\nElaborado por:CONTROLES INTELIGENTES S.A.S\nWWW.CI24.COM\nNit:900.249.884-9\n--------------------------------------------",
+    "Note": "",
+    "ElectronicData": {},
+    "Reference": {
+        "Id_TransactionParent": "101-1761432375"
+    }
+}

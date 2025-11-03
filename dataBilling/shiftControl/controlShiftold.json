@@ -1,0 +1,112 @@
+{
+    "listShifts": [
+        {
+            "Id_Shift": 7,
+            "Id_Device": 104,
+            "InitialDate": "2024-05-13 07:57:11",
+            "FinalDate": "2024-05-13 15:17:46",
+            "Status": 1,
+            "InitInvoice": 467,
+            "FinishInvoice": 560,
+            "Id_PeopleOpening": 1,
+            "InitialCash": 1500,
+            "InternalControl": 5780,
+            "Diference": 0,
+            "Id_PeopleClosed": 1,
+            "FinalCash": 1000,
+            "MethodsPay": {
+                "Efectivo": 4280
+            },
+            "Zones": {
+                "Zona 1 Bicicletas": 1650,
+                "Zona 1 Carros": 2525,
+                "Zona 1 Motos": 105
+            },
+            "Agreements": {},
+            "TotalInvoices": 92,
+            "TotalTaxes": 590.4599999999996,
+            "TotalwhitTaxes": 4280,
+            "TotalwhitOutTaxes": 3689.54,
+            "FailReturn": 0,
+            "Emptied": 0,
+            "Recharge": 0,
+            "StackControl": 0,
+            "LastInsert": "2024-05-13 15:08:32",
+            "TotalItems": {
+                "Estacionamiento": 4280
+            }
+        },
+        {
+            "Id_Shift": 18,
+            "Id_Device": 104,
+            "InitialDate": "2024-05-18 15:19:43",
+            "FinalDate": "2024-05-19 00:05:51",
+            "Status": 1,
+            "InitInvoice": 1290,
+            "FinishInvoice": 1389,
+            "Id_PeopleOpening": 6713,
+            "InitialCash": 1000,
+            "InternalControl": 8600,
+            "Diference": 0,
+            "Id_PeopleClosed": 6713,
+            "FinalCash": 1000,
+            "MethodsPay": {
+                "Efectivo": 7600
+            },
+            "Zones": {
+                "Zona 1 Bicicletas": 2280,
+                "Zona 1 Carros": 5275,
+                "Zona 1 Motos": 45
+            },
+            "Agreements": {},
+            "TotalInvoices": 100,
+            "TotalTaxes": 1048.2199999999998,
+            "TotalwhitTaxes": 7600,
+            "TotalwhitOutTaxes": 6551.780000000001,
+            "FailReturn": 0,
+            "Emptied": 0,
+            "Recharge": 0,
+            "StackControl": 0,
+            "LastInsert": "2024-05-18 23:58:31",
+            "TotalItems": {
+                "Estacionamiento": 7600
+            }
+        },
+        {
+            "Id_Shift": 17,
+            "Id_Device": 104,
+            "InitialDate": "2024-05-18 09:09:42",
+            "FinalDate": "2024-05-18 15:18:26",
+            "Status": 1,
+            "InitInvoice": 1230,
+            "FinishInvoice": 1289,
+            "Id_PeopleOpening": 6712,
+            "InitialCash": 1000,
+            "InternalControl": 4235,
+            "Diference": 0,
+            "Id_PeopleClosed": 6712,
+            "FinalCash": 1000,
+            "MethodsPay": {
+                "Efectivo": 3235
+            },
+            "Zones": {
+                "Zona 1 Bicicletas": 1710,
+                "Zona 1 Carros": 1525
+            },
+            "Agreements": {},
+            "TotalInvoices": 60,
+            "TotalTaxes": 446.3099999999998,
+            "TotalwhitTaxes": 3235,
+            "TotalwhitOutTaxes": 2788.69,
+            "FailReturn": 0,
+            "Emptied": 0,
+            "Recharge": 0,
+            "StackControl": 0,
+            "LastInsert": "2024-05-18 15:07:15",
+            "TotalItems": {
+                "Estacionamiento": 3235
+            }
+        }
+    ],
+    "nextShift": 1
+}
