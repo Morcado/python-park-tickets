@@ -1,4 +1,6 @@
 import json
+import os
+import pandas
 
 def print_tree(data, indent=""):
     if isinstance(data, dict):
@@ -11,17 +13,23 @@ def print_tree(data, indent=""):
     else:
         print(f"{indent}└── {data}")
 
-def read_json_tree(file_path):
+def read_json_tree(base_path):
     try:
-        with open(file_path, 'r') as file:
+        with open(os.path.join(base_path, r"shiftControl\shiftResults\920\shiftResult-920.json"), 'r') as file:
             data = json.load(file)
-            print("JSON Tree Structure:")
-            print_tree(data)
+            print(data)
+            # print("JSON Tree Structure:")
+            #print_tree(data)
+        df = pandas.json_normalize(data)
+        csv_file_name = "example_pandas.csv"
+        df.to_csv(os.path.join(base_path, csv_file_name), index=False)
+        print(f"DataFrame saved to {csv_file_name}")
+
     except FileNotFoundError:
-        print(f"Error: File not found at {file_path}")
+        print(f"Error: File not found at {base_path}")
     except json.JSONDecodeError:
         print("Error: Invalid JSON format")
 
 # Example usage
-file_path = r"C:\Users\oscar.gonzalez\Downloads\shiftResults\921\Ferchaz64023.json"  # Replace with your JSON file path
-read_json_tree(file_path)
+base_path = r"C:\Users\oscar.gonzalez\Desktop\python-park-tickets\dataBilling"  # Replace with your JSON file path
+read_json_tree(base_path)
