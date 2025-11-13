@@ -3,7 +3,24 @@ import json
 import os
 import pandas
 
-def read_shift_control(base_path):
+def read_shift_control(base_path, current_working_dir):
+    rename_map = {
+        'Id_Shift': 'ID Turno',
+        'InitialDate': 'Fecha Inicio',
+        'FinalDate': 'Fecha Fin',
+        'Status': 'Estado',
+        'Id_PeopleOpening': 'ID Persona Apertura',
+        'InitialCash': 'Efectivo Inicial',
+        'InternalControl': 'Control Interno',
+        'Diference': 'Diferencia',
+        'Id_PeopleClosed': 'ID Persona Cierre',
+        'FinalCash': 'Efectivo Final',
+        'TotalInvoices': 'Total Facturas',
+        'TotalTaxes': 'Total Impuestos',
+        'TotalwhitTaxes': 'Total con Impuestos',
+        'TotalwhitOutTaxes': 'Total sin Impuestos'
+    }
+    
     file = glob.glob(os.path.join(base_path, r'shiftControl\controlShift.json'))[0]
     
     with open(file, 'r') as f:
@@ -11,33 +28,66 @@ def read_shift_control(base_path):
             data = json.load(f)
             df = pandas.json_normalize(data, record_path=['listShifts'])
             df = df[['Id_Shift', 'InitialDate', 'FinalDate', 'Status', 'Id_PeopleOpening', 'InitialCash', 'InternalControl', 'Diference', 'Id_PeopleClosed', 'FinalCash', 'TotalInvoices', 'TotalTaxes', 'TotalwhitTaxes', 'TotalwhitOutTaxes']]
+            df.rename(columns=rename_map, inplace=True)
             
-            writer =  pandas.ExcelWriter(os.path.join(base_path, f"shift_control.xlsx"))
+            writer =  pandas.ExcelWriter(os.path.join(current_working_dir, f"shift_control.xlsx"), engine='xlsxwriter')
             df.to_excel(writer, sheet_name='Control', index=False)
             
-            for shift_id in df['Id_Shift']:
-                if shift_id == 1: # Skip invalid shift IDs
+            for column in df.columns:
+                column_length = max(df[column].astype(str).map(len).max(), len(column))
+                col_idx = df.columns.get_loc(column)
+                writer.sheets['Control'].set_column(col_idx, col_idx, column_length)
+            
+            
+            for shift_id in df['ID Turno']:
+                if shift_id == None or shift_id == 1:
                     continue
                 shift_summary = read_shift_sumary(base_path, shift_id)
                 shift_tickets = read_shift_tickets(base_path, shift_id)
-    
-                shift_summary.to_excel(writer, sheet_name=f'Summary-{shift_id}')
-                shift_tickets.to_excel(writer, sheet_name=f'Tickets-{shift_id}', index=False)
                 
-                print(f"Details for shift {shift_id} saved to shift_{shift_id}_details.xlsx")
-            
+                shift_summary.to_excel(writer, sheet_name=f'Turno {shift_id}')
+                
+                    
+                for col in shift_summary.columns:
+                    column_length = max(shift_summary[col].astype(str).map(len).max(), len(str(col)))
+                    col_idx = shift_summary.columns.get_loc(col)
+                    writer.sheets[f'Turno {shift_id}'].set_column(col_idx, col_idx, column_length)
+                    
+                shift_tickets.to_excel(writer, sheet_name=f'Facturas del turno {shift_id}', index=False)
+                
+                for col in shift_tickets.columns:
+                    column_length = max(shift_tickets[col].astype(str).map(len).max(), len(col))
+                    col_idx = shift_tickets.columns.get_loc(col)
+                    writer.sheets[f'Facturas del turno {shift_id}'].set_column(col_idx, col_idx, column_length)
+                
             writer.close()
             
             
-            print(f"DataFrame saved to shift_control.csv")
+            print(f"Control de turnos exportado exitosamente a {current_working_dir}\\shift_control.xlsx")
         except FileNotFoundError:
-            print(f"Error: File not found at {base_path}")
+            print(f"Error: archivo no encontrado en {base_path}")
         except json.JSONDecodeError:
-            print("Error: Invalid JSON format")
+            print("Error: Formato JSON invalido")
 
-def read_shift_sumary(base_path, shift_id='920'):
+def read_shift_sumary(base_path, shift_id):
+    rename_map = {
+        'InitialDate': 'Fecha Inicio',
+        'FinalDate': 'Fecha Fin',
+        'InitInvoice': 'Factura Inicial',
+        'FinishInvoice': 'Factura Final',
+        'Id_PeopleOpening': 'ID Persona Apertura',
+        'InitialCash': 'Efectivo Inicial',
+        'InternalControl': 'Control Interno',
+        'Diference': 'Diferencia',
+        'Id_PeopleClosed': 'ID Persona Cierre',
+        'FinalCash': 'Efectivo Final',
+        'TotalTaxes': 'Total Impuestos',
+        'TotalwhitTaxes': 'Total con Impuestos',
+        'TotalwhitOutTaxes': 'Total sin Impuestos',
+        'LastInsert': 'Ultima Insercion'
+    }
+
     file = glob.glob(os.path.join(base_path, rf'shiftControl\shiftResults\{shift_id}\shiftResult-{shift_id}.json'))
-    print( len(file))
     
     if (len(file)==0):
         return pandas.DataFrame()
@@ -50,18 +100,29 @@ def read_shift_sumary(base_path, shift_id='920'):
             data = json.load(f)
             df = pandas.json_normalize(data)
             df = df[['InitialDate', 'FinalDate', 'InitInvoice', 'FinishInvoice', 'Id_PeopleOpening', 'InitialCash', 'InternalControl', 'Diference', 'Id_PeopleClosed', 'FinalCash', 'TotalTaxes', 'TotalwhitTaxes', 'TotalwhitOutTaxes', 'LastInsert']]
+            df.rename(columns=rename_map, inplace=True)
             
             df = df.T
+            print(f"Se han leido los datos del resumen del turno {shift_id}")
             return df
-            #df.to_csv(os.path.join(base_path, "daily_summary.csv"))
-            #print(f"DataFrame saved to daily_summary.csv")
             
         except FileNotFoundError:
-            print(f"Error: File not found at {base_path}")
+            print(f"Error: no se encontro el archivo en {base_path}")
         except json.JSONDecodeError:
-            print("Error: Invalid JSON format")
+            print("Error: Formato JSON invalido")
 
-def read_shift_tickets(base_path, shift_id='920'):
+def read_shift_tickets(base_path, shift_id):
+    rename_map = {
+        'IdInvoice': 'ID Factura',
+        'Id_Transaction': 'ID Transaccion',
+        'InvoiceDate': 'Fecha Factura',
+        'TotalWithoutTaxes': 'Total sin Impuestos',
+        'TotalTaxes': 'Total Impuestos',
+        'Subtotal': 'Subtotal',
+        'Total': 'Total',
+        'PaymentDetails.change': 'Cambio',
+        'Reference.Id_TransactionParent': 'ID Transaccion Padre'
+    }
     
     json_files = glob.glob(os.path.join(base_path, rf'shiftControl\shiftResults\{shift_id}\Fer*.json'))
     dfs = []
@@ -72,6 +133,7 @@ def read_shift_tickets(base_path, shift_id='920'):
                 data = json.load(f)
                 df = pandas.json_normalize(data)
                 df = df[['IdInvoice', 'Id_Transaction', 'InvoiceDate', 'TotalWithoutTaxes', 'TotalTaxes', 'Subtotal', 'Total', 'PaymentDetails.change', 'Reference.Id_TransactionParent']]
+                df.rename(columns=rename_map, inplace=True)
                 dfs.append(df)
 
             except FileNotFoundError:
@@ -79,17 +141,22 @@ def read_shift_tickets(base_path, shift_id='920'):
             except json.JSONDecodeError:
                 print("Error: Invalid JSON format")
                 
-    if dfs: # Check if any dataframes were successfully loaded
+    if dfs:
         combined_df = pandas.concat(dfs, ignore_index=True)
+        print(f"Se calcularon {len(combined_df)} tickets para el turno {shift_id}")
         return combined_df
-        #combined_df.to_csv(os.path.join(base_path, "daily_tickets.csv"), index=False)
-        print(f"DataFrame saved to daily_tickets.csv")
     else:
-        combined_df = pandas.DataFrame() # Create an empty DataFrame if no files were rea
+        combined_df = pandas.DataFrame()
+        print(f"No se encontraron tickets para el turno {shift_id}")
         return combined_df
 
 
-base_path = r"C:\Users\oscar.gonzalez\Desktop\python-park-tickets\dataBilling"  # Replace with your JSON file path
-#read_shift_tickets(base_path, 920)
-#read_shift_sumary(base_path, 920)
-read_shift_control(base_path)
+if __name__ == "__main__":
+    current_working_dir = os.getcwd()
+
+    base_path = open("./ticket-dir.txt", "r").read().strip()
+    if (not os.path.exists(base_path)):
+        print("El directorio no existe. Verifique la ruta e intente de nuevo.")
+        exit(1)
+        
+    read_shift_control(base_path, current_working_dir)
